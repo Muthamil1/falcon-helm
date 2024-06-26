@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Demo-falcon
+  labels:
+    app: Demo-falcon
+    kubernetes.azure.com/generator: devhub
+  namespace: falcon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Demo-falcon
+  template:
+    metadata:
+      labels:
+        app: Demo-falcon
+    spec:
+      containers:
+        - name: Demo-falcon
+          image: aksautomation.azurecr.io/falconv1:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
